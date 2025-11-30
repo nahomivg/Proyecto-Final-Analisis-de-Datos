@@ -17,35 +17,41 @@ import seaborn as sns                  # Carga librería de visualización
 plt.style.use('default')               # Usar estilo de gráfico por defecto
 sns.set_palette("husl")                # Establecer paleta de colores
 
+print("=== BIBLIOTECAS IMPORTADAS CORRECTAMENTE ===\n")
+
 # -----------------------------------------------------------------------------
 # 2. CARGA DE DATOS
 # -----------------------------------------------------------------------------
-# TODO: Carga tu dataset aquí
-# df = pd.read_csv('ruta/a/tu/archivo.csv')
 
-# EJEMPLO:
-# df = pd.read_csv('ventas_2024.csv')
+# Crear DataFrame
+df = pd.read_csv('peliculas_ratings.csv')
 
 # -----------------------------------------------------------------------------
 # 3. EXPLORACIÓN INICIAL
 # -----------------------------------------------------------------------------
-# TODO: Explora tu dataset
+
+print("=" * 70)
+print("EXPLORACIÓN INICIAL DE DATOS")
+print("=" * 70)
 
 # Ver primeras filas
-# print("\n=== PRIMERAS FILAS ===")
-# print(df.head())
+print("\n=== PRIMERAS 5 FILAS ===")
+print(df.head())
 
 # Información del dataset
-# print("\n=== INFORMACIÓN DEL DATASET ===")
-# print(df.info())
+print("\n=== INFORMACIÓN DEL DATASET ===")
+print(df.info())
 
 # Estadísticas descriptivas
-# print("\n=== ESTADÍSTICAS DESCRIPTIVAS ===")
-# print(df.describe())
+print("\n=== ESTADÍSTICAS DESCRIPTIVAS ===")
+print(df.describe())
 
-# Valores nulos
-# print("\n=== VALORES NULOS ===")
-# print(df.isnull().sum())
+# Verificar valores nulos
+print("\n=== VALORES NULOS ===")
+print(df.isnull().sum())
+print()
+
+# INTERPRETACIÓN:   ------- ¡PENDIENTE!
 
 # -----------------------------------------------------------------------------
 # 4. LIMPIEZA DE DATOS
