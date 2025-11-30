@@ -104,7 +104,6 @@ df = df[df["presupuesto_millones"] > 0]
 df = df[df["recaudacion_millones"] > 0]
 
 
-
 # Verificar y eliminar duplicados
 duplicados = df.duplicated().sum()
 print("\nDuplicados encontrados: ", duplicados)
