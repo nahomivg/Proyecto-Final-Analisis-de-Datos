@@ -9,13 +9,13 @@
 # -----------------------------------------------------------------------------
 # 1. IMPORTACIONES
 # -----------------------------------------------------------------------------
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import pandas as pd                    # Carga la librería pandas
+import matplotlib.pyplot as plt        # Carga librería para crear gráficos
+import seaborn as sns                  # Carga librería de visualización 
 
 # Configuración de visualización
-plt.style.use('default')
-sns.set_palette("husl")
+plt.style.use('default')               # Usar estilo de gráfico por defecto
+sns.set_palette("husl")                # Establecer paleta de colores
 
 # -----------------------------------------------------------------------------
 # 2. CARGA DE DATOS
