@@ -3,7 +3,7 @@
 # =============================================================================
 # Autor: Nahomi Yamile Velazquez Gasca
 # Fecha: 01/Diciembre/2025
-# Pregunta de investigación: ¿Qué género cinematográfico ofrece el mayor retorno de inversión (ROI) en los últimos 5 años?
+# Pregunta de investigación: ¿Qué género cinematográfico ofrece el mayor retorno de inversión (ROI) en el último año (2024)?
 # =============================================================================
 
 # -----------------------------------------------------------------------------
