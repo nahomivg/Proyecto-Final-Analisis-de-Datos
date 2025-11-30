@@ -17,7 +17,10 @@ import seaborn as sns                  # Carga librería de visualización
 plt.style.use('default')               # Usar estilo de gráfico por defecto
 sns.set_palette("husl")                # Establecer paleta de colores
 
-print("=== BIBLIOTECAS IMPORTADAS CORRECTAMENTE ===\n")
+import warnings                        # Silenciar advertencias en consola
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+print("\n=== BIBLIOTECAS IMPORTADAS CORRECTAMENTE ===\n")
 
 # -----------------------------------------------------------------------------
 # 2. CARGA DE DATOS
@@ -44,12 +47,8 @@ print(df.info())
 
 # Estadísticas descriptivas
 print("\n=== ESTADÍSTICAS DESCRIPTIVAS ===")
-print(df.describe())
+print(df.describe(), "\n")
 
-# Verificar valores nulos
-print("\n=== VALORES NULOS ===")
-print(df.isnull().sum())
-print()
 
 # INTERPRETACIÓN:   ------- ¡PENDIENTE!
 
@@ -63,7 +62,8 @@ print("=" * 70)
 # ------------------------------------------------------------------------
 # RESUMEN DE LIMPIEZA
 # - Corrección de texto (mal codificado)
-# - Eliminación de valores faltantes y negativos
+# - Eliminación de valores faltantes
+# - Eliminación de valores negativos o inválidos
 # - Eliminación de duplicados
 # - Conversión de tipos de datos
 # - Eliminar outliers en el retorno de inversión (ROI)
@@ -90,18 +90,32 @@ for columnas in columnas_mal_codificadas:          # Renombrar columnas completa
 
 
 # Verificar y eliminar valores faltantes
-valores_faltantes= df.isnull().sum()
-print("\nValores faltantes encontrados: ", valores_faltantes)
+valores_faltantes= df.isnull().sum()                            # Conteo de valores faltantes
+valores_faltantes = valores_faltantes[valores_faltantes > 0]    # Filtrar columnas con valores faltantes
+print("\nValores faltantes encontrados:")
 
-if valores_faltantes.sum() > 0:
+for columna, valores in valores_faltantes.items():            
+    print(f"{columna}: {valores}")
+
+if len(valores_faltantes) > 0:                           # Eliminar valores faltantes
     df = df.dropna()
     print("Filas con valores faltantes eliminadas.")
+else:
+    print("No se encontraron valores faltantes.")  
 
 
-# Verificar y eliminar valores negativos
-df = df[df["duracion_minutos"] > 0]
-df = df[df["presupuesto_millones"] > 0]
-df = df[df["recaudacion_millones"] > 0]
+# Verificar y eliminar valores negativos o inválidos
+columnas_numericas = df.select_dtypes(include=["int", "float"]).columns     # Seleccionar columnas numéricas
+
+for valor in columnas_numericas:              
+    valores_invalidos = df[df[valor] <= 0]           # Filtrar filas con valores negativos o inválidos(0)
+    if not valores_invalidos.empty:
+        print("\nValores inválidos encontrados:")
+        print(valores_invalidos[[valor]])
+        df = df[df[valor] > 0]                       # Eliminar valores
+        print("Filas con valores inválidos eliminadas.")
+    else:
+        print("\nNo se encontraron valores inválidos.")
 
 
 # Verificar y eliminar duplicados
@@ -111,6 +125,8 @@ print("\nDuplicados encontrados: ", duplicados)
 if duplicados > 0:
     df = df.drop_duplicates()
     print("Duplicados eliminados.")
+else:
+    print("No se encontraron duplicados.")  
 
 
 # Correción tipo de datos
