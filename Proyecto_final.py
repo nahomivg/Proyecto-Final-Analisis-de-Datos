@@ -93,7 +93,7 @@ for columnas in columnas_mal_codificadas:          # Renombrar columnas completa
 valores_faltantes= df.isnull().sum()
 print("\nValores faltantes encontrados: ", valores_faltantes)
 
-if valores_faltantes > 0:
+if valores_faltantes.sum() > 0:
     df = df.dropna()
     print("Filas con valores faltantes eliminadas.")
 
