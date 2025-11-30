@@ -157,66 +157,93 @@ print()
 # -----------------------------------------------------------------------------
 # 5. ANÁLISIS DESCRIPTIVO
 # -----------------------------------------------------------------------------
-# TODO: Calcula estadísticas relevantes para tu pregunta
-
 print("\n=== ANÁLISIS DESCRIPTIVO ===")
 
-# Ejemplo 1: Medidas de tendencia central
-# media = df['columna_numerica'].mean()
-# mediana = df['columna_numerica'].median()
-# print(f"Media: {media:.2f}")
-# print(f"Mediana: {mediana:.2f}")
+# ----- Conteo de películas por género -----
+conteos_genero = df["genero"].value_counts()
+print("\nNúmero de películas por género:")
+print(conteos_genero)
 
-# Ejemplo 2: Agrupaciones
-# resumen = df.groupby('categoria')['valor'].agg(['sum', 'mean', 'count'])
-# print(resumen)
+# ----- Media de calificación de critica -----
+media_calif_critica = df.groupby("genero")["calificacion_critica"].mean().sort_values(ascending=False)
+print("\nMedia de calificación de critica por género:")
+print(media_calif_critica)
 
-# Ejemplo 3: Frecuencias
-# conteos = df['columna_categorica'].value_counts()
-# print(conteos)
+# ----- Media de calificación de audiencia -----
+media_calif_audiencia = df.groupby("genero")["calificacion_audiencia"].mean().sort_values(ascending=False)
+print("\nMedia de calificación de audiencia por género:")
+print(media_calif_audiencia)
 
-# Ejemplo 4: Correlaciones (si aplica)
-# correlacion = df[['col1', 'col2', 'col3']].corr()
-# print(correlacion)
+# ----- Promedio de ROI por género -----
+roi_por_genero = df.groupby("genero")["roi_porcentaje"].mean().sort_values(ascending=False)
+print("\nROI promedio por género:")
+print(roi_por_genero)
+
+# ----- Ganancia promedio por género -----
+ganancia_por_genero = df.groupby("genero")["ganancia_millones"].mean().sort_values(ascending=False)
+print("\nGanancia promedio por género:")
+print(ganancia_por_genero)
+
+# ----- Correlación -----
+correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr()
+print("\nCorrelación:")
+print(correlacion)
 
 # INTERPRETACIÓN: [Escribe aquí qué significan tus estadísticas]
+
 
 # -----------------------------------------------------------------------------
 # 6. VISUALIZACIONES
 # -----------------------------------------------------------------------------
-# TODO: Crea al menos 3 visualizaciones diferentes
-
 print("\n=== CREANDO VISUALIZACIONES ===")
 
-# VISUALIZACIÓN 1: [Describe qué muestra]
-# plt.figure(figsize=(10, 6))
-# # Tu código de visualización aquí
-# plt.title('Título Descriptivo')
-# plt.xlabel('Etiqueta X')
-# plt.ylabel('Etiqueta Y')
-# plt.tight_layout()
-# plt.savefig('grafico1.png', dpi=300, bbox_inches='tight')
-# plt.show()
+# ----- Histograma: Total de películas por año -----
+print("VISUALIZACIÓN 1: Total de películas por año")
+plt.figure(figsize=(8, 5))
+sns.histplot(data=df, x="Año", y="Cantidad de Películas", bins=20, kde=True)
+plt.title("Número de películas por año")
+plt.savefig("grafico1_peliculas_año.png")
+plt.close()
+print("Grafico guardado\n")
 
-# VISUALIZACIÓN 2: [Describe qué muestra]
-# plt.figure(figsize=(10, 6))
-# # Tu código de visualización aquí
-# plt.title('Título Descriptivo')
-# plt.xlabel('Etiqueta X')
-# plt.ylabel('Etiqueta Y')
-# plt.tight_layout()
-# plt.savefig('grafico2.png', dpi=300, bbox_inches='tight')
-# plt.show()
 
-# VISUALIZACIÓN 3: [Describe qué muestra]
-# plt.figure(figsize=(10, 6))
-# # Tu código de visualización aquí
-# plt.title('Título Descriptivo')
-# plt.xlabel('Etiqueta X')
-# plt.ylabel('Etiqueta Y')
-# plt.tight_layout()
-# plt.savefig('grafico3.png', dpi=300, bbox_inches='tight')
-# plt.show()
+# ----- Gráfico de barras: Películas por género -----
+print("VISUALIZACIÓN 2: Total de películas por año")
+sns.barplot(data=df, x="Género", y="Cantidad de películas", ci=None)
+plt.title("Cantidad de películas por género en 2024")
+plt.savefig("grafico2_peliculas_genero.png")
+plt.close()
+print("Grafico guardado\n")
+
+
+# ----- Gráfico de barras: ROI promedio por género -----
+print("VISUALIZACIÓN 3: ROI promedio por género")
+sns.barplot(data=df, x="ROI(%)", y="Género", ci=None)
+plt.title("ROI promedio por género (2024)")
+plt.savefig("grafico3_roi_genero.png")
+plt.close()
+print("Grafico guardado\n")
+
+
+# ----- Heatmap de correlación: Correlación entre presupuesto, recaudación y ROI -----
+print("VISUALIZACIÓN 4: Correlación entre presupuesto, recaudación y ROI")
+plt.figure(figsize=(8, 5))
+correlacion = df[["presupuesto", "recaudación", "ROI(%)"]].corr()
+sns.heatmap(correlacion, annot=True, cmap="coolwarm", center=0)
+plt.title("Correlación entre presupuesto, recaudación y ROI (2024)")
+plt.savefig("grafico4_correlacion.png")
+plt.close()
+print("Grafico guardado\n")
+
+
+# ----- Boxplot: ROI -----
+print("VISUALIZACIÓN 5: Botplot de ROI")
+plt.figure(figsize=(8, 5))
+sns.boxplot(data=df, x="genero", y="roi_porcentaje")
+plt.title("Distribución de ROI por género (2024)")
+plt.savefig("grafico5_boxplot_roi.png")
+plt.close()
+print("Grafico guardado\n")
 
 # -----------------------------------------------------------------------------
 # 7. INTERPRETACIÓN Y CONCLUSIONES
