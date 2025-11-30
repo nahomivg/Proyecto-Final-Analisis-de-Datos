@@ -56,28 +56,105 @@ print()
 # -----------------------------------------------------------------------------
 # 4. LIMPIEZA DE DATOS
 # -----------------------------------------------------------------------------
-# TODO: Limpia tu dataset según necesites
+print("=" * 70)
+print("LIMPIEZA Y PREPARACIÓN DE DATOS")
+print("=" * 70)
 
-# Eliminar duplicados
-# df = df.drop_duplicates()
+# ------------------------------------------------------------------------
+# RESUMEN DE LIMPIEZA
+# - Corrección de texto (mal codificado)
+# - Eliminación de valores faltantes y negativos
+# - Eliminación de duplicados
+# - Conversión de tipos de datos
+# - Eliminar outliers en el retorno de inversión (ROI)
+# - Filtrado para el año 2024
+# ------------------------------------------------------------------------
 
-# Manejar valores nulos (elige la estrategia apropiada)
-# df = df.dropna()  # Eliminar filas con nulos
-# df = df.fillna(valor)  # Rellenar con un valor
-# df['columna'] = df['columna'].fillna(df['columna'].mean())  # Rellenar con media
+# Corrección de texto
+df.columns = (df.columns                      # Renombrar enzabezados de columnas mal codificadas
+               .str.replace("Ã±", "ñ")        # Uso de replace()
+               .str.replace("Ã©", "é")
+               .str.replace("Ã³", "ó")
+               .str.replace("Ã-­", "í")
+)
 
-# Convertir tipos de datos
-# df['fecha'] = pd.to_datetime(df['fecha'])
-# df['categoria'] = df['categoria'].astype('category')
+columnas_mal_codificadas = ["titulo", "genero", "idioma_original"]      # Columnas completas mal codificadas
 
-# Crear nuevas columnas si es necesario
-# df['nueva_columna'] = df['col1'] + df['col2']
+for columnas in columnas_mal_codificadas:          # Renombrar columnas completas mal codificadas
+    df[columnas] = (df[columnas]                   # Uso de replace()
+               .str.replace("Ã±", "ñ")        
+               .str.replace("Ã©", "é")
+               .str.replace("Ã³", "ó")
+               .str.replace("Ã-­", "í")
+    )
 
-# Filtrar datos si es necesario
-# df = df[df['columna'] > valor]
+
+# Verificar y eliminar valores faltantes
+valores_faltantes= df.isnull().sum()
+print("\nValores faltantes encontrados: ", valores_faltantes)
+
+if valores_faltantes > 0:
+    df = df.dropna()
+    print("Filas con valores faltantes eliminadas.")
+
+
+# Verificar y eliminar valores negativos
+df = df[df["duracion_minutos"] > 0]
+df = df[df["presupuesto_millones"] > 0]
+df = df[df["recaudacion_millones"] > 0]
+
+
+
+# Verificar y eliminar duplicados
+duplicados = df.duplicated().sum()
+print("\nDuplicados encontrados: ", duplicados)
+
+if duplicados > 0:
+    df = df.drop_duplicates()
+    print("Duplicados eliminados.")
+
+
+# Correción tipo de datos
+print("\n=== TIPOS DE DATOS ===")        # Verificar tipos de datos
+print(df.dtypes)
+
+df["genero"] = df["genero"].astype("category")
+
+# No se convierte la variable "año" a datetime (202X-XX-XX) 
+# El análisis está enfocado por año (202X), por lo que 
+# El formato de número entero (int) es adecuado
+df["año"] = df["año"].astype(int)
+
+
+# Eliminar outliers en el retorno de inversión (ROI)
+# Uso para evitar que valores extremos distorsionen estadísticas
+Q1 = df["roi_porcentaje"].quantile(0.25)       
+Q3 = df["roi_porcentaje"].quantile(0.75)
+IQR = Q3 - Q1
+
+Limite_inferior = Q1 - 1.5 * IQR            # Limites para definir outliers
+Limite_superior = Q3 + 1.5 * IQR
+
+outliers = df[(df["roi_porcentaje"] < Limite_inferior) | (df["roi_porcentaje"] > Limite_superior)]
+print("\nOutliers encontrados: ", len(outliers))
+
+if outliers > 0:
+    df = df[(df["roi_porcentaje"] >= Limite_inferior) & (df["roi_porcentaje"] <= Limite_superior)]          # Eliminar outliers
+    print("Outliers eliminados.")
+
+
+# Filtración de datos
+# Filtrar año 2024 (De acuerdo a pregunta de investigación)
+df = df[df["año"] == 2024]              
+print("\nPelículas del año 2024:", len(df))
+
 
 print("\n=== DATOS DESPUÉS DE LIMPIEZA ===")
-# print(f"Filas: {len(df)}, Columnas: {len(df.columns)}")
+print(f"Filas: {len(df)}, Columnas: {len(df.columns)}")
+
+print("\n Datos limpios y listos para análisis")
+print()
+
 
 # -----------------------------------------------------------------------------
 # 5. ANÁLISIS DESCRIPTIVO
