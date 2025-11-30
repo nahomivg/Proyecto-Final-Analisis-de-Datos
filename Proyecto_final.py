@@ -147,7 +147,6 @@ if outliers > 0:
 df = df[df["año"] == 2024]              
 print("\nPelículas del año 2024:", len(df))
 
-
 print("\n=== DATOS DESPUÉS DE LIMPIEZA ===")
 print(f"Filas: {len(df)}, Columnas: {len(df.columns)}")
 
