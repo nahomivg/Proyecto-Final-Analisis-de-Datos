@@ -38,7 +38,7 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 - Se eliminaron filas con valores faltantes y duplicados en columnas críticas  
 - Se filtraron valores negativos o cero en columnas numéricas relevantes
 - Se eliminaron filas con valores duplicados  
-- Se convirtieron los tipos de datos de las columnas para un manejo más eficiente.
+- Se convirtieron los tipos de datos de las columnas para un manejo más eficiente
 - Se eliminaron outliers en el retorno de inversión (ROI)
 - Se filtraron los datos para el año 2024
 
