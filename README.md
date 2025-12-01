@@ -4,7 +4,7 @@ Trabajo de análisis completo y presentación de resultados
 
 #===================================================================
 #PROYECTO FINAL: Análisis del retorno de inversión (ROI) por género cinematográfico
-#====================================================================
+#===================================================================
 #Autor: Nahomi Yamile Velazquez Gasca
 #Fecha: 01/Diciembre/2025
 #====================================================================
