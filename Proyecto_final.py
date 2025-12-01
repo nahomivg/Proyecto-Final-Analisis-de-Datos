@@ -107,15 +107,21 @@ else:
 # Verificar y eliminar valores negativos o inválidos
 columnas_numericas = df.select_dtypes(include=["int", "float"]).columns     # Seleccionar columnas numéricas
 
-for valor in columnas_numericas:              
-    valores_invalidos = df[df[valor] <= 0]           # Filtrar filas con valores negativos o inválidos(0)
-    if not valores_invalidos.empty:
-        print("\nValores inválidos encontrados:")
-        print(valores_invalidos[[valor]])
-        df = df[df[valor] > 0]                       # Eliminar valores
-        print("Filas con valores inválidos eliminadas.")
-    else:
-        print("\nNo se encontraron valores inválidos.")
+valores_invalidos = {}                                  
+for columna in columnas_numericas:              
+    total_invalidos = (df[columna] <= 0).sum()          # Conteo de valores negativos o inválidos(0)
+    if total_invalidos > 0:
+        valores_invalidos[columna] = total_invalidos
+
+print("\nValores inválidos encontrados:")
+for columna, count in valores_invalidos.items():
+    print(f"{columna}: {count}")
+
+if len(valores_invalidos) > 0:                              # Eliminar filas con algún valor inválido
+    df = df[(df[columnas_numericas] > 0).all(axis=1)]
+    print("Filas con valores inválidos eliminadas.")
+else:
+    print("No se encontraron valores inválidos.")
 
 
 # Verificar y eliminar duplicados
