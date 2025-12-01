@@ -375,7 +375,7 @@ LIMITACIONES:
 - Sesgo debido a la limpieza de datos (Eliminación de filas).
 - Tamaño de muestra reducido (21 películas en 2024), lo que puede afectar la representatividad.
 - Datos concentrados únicamente en un año; no se incluyen tendencias históricas.
-
+      
 
 PRÓXIMOS PASOS:
 ---------------
@@ -391,6 +391,9 @@ Aunque los ingresos absolutos son mayores en Acción, el retorno relativo es men
 Esto sugiere que películas con menor presupuesto pero buena aceptación pueden ser más eficientes financieramente.
 """)
 
+# En el código, una limitación y sugerencia es el uso de if df.empty(), para prevenir errores
+# cuando un filtro deja un DataFrame vacío. En la creación de los gráficos, se podría usar try/except.
+# Asimismo, el código queda muy "rígido" (limitado a 2024) en caso de que se desee expandir el análisis.
 # ------------------------------------------------------------------------
 
 print("\nANÁLISIS COMPLETADO CORRECTAMENTE\n")
