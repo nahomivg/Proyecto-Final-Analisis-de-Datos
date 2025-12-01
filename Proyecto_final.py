@@ -337,7 +337,6 @@ print("\n========= HALLAZGOS PRINCIPALES =========")
 
 # Uso de comillas triple ("""") para imprimir en pantalla.
 print("""                            
-----------------------
 1. Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación.
    Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2)
               y boxplot de ROI (VISUALIZACIÓN 4).
@@ -385,3 +384,34 @@ print("\nANÁLISIS COMPLETADO CORRECTAMENTE\n")
 # =============================================================================
 # FIN DEL PROYECTO
 # =============================================================================
+
+
+# CHECKLIST DE ENTREGA
+# ====================
+
+# Antes de entregar tu proyecto, verifica que hayas completado:
+# CÓDIGO:
+# [✓] Todas las importaciones necesarias
+# [✓] Carga de datos correctamente
+# [✓] Exploración inicial (head, info, describe)
+# [✓] Limpieza de datos documentada
+# [✓] Al menos 3 análisis descriptivos diferentes
+# [✓] Al menos 3 visualizaciones con títulos y etiquetas
+# [✓] Código comentado explicando cada paso
+# [✓] Interpretación en comentarios
+
+# ARCHIVOS:
+# [✓] proyecto_final.py (este archivo completo)
+# [✓] datos.csv (tu dataset)
+# [✓] grafico1.png
+# [✓] grafico2.png
+# [✓] grafico3.png
+# [✓] README.md con documentación del proyecto
+
+# DOCUMENTACIÓN:
+# [✓] Pregunta de investigación clara
+# [✓] Descripción de los datos usados
+# [✓] Explicación de la limpieza realizada
+# [✓] Interpretación de cada análisis
+# [✓] Conclusiones basadas en evidencia
+# [✓] Limitaciones identificadas
