@@ -84,9 +84,9 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 ---
 
 **6. Interpretación y conclusiones** <br>
-a) Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación.
-b) La audiencia valora más Acción y Comedia, mientras que los críticos prefieren Acción y Drama.
-c) Existe una correlación negativa fuerte entre presupuesto y ROI, indicando que películas con presupuestos altos no siempre generan un alto retorno monetario
+a) Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación. <br>
+b) La audiencia valora más Acción y Comedia, mientras que los críticos prefieren Acción y Drama. <br>
+c) Existe una correlación negativa fuerte entre presupuesto y ROI, indicando que películas con presupuestos altos no siempre generan un alto retorno monetario.
 
 *Respuesta a la pregunta de investigación:*
 Según los datos de 2024, el género de Ciencia Ficción ofreció el mayor retorno de inversión promedio,
