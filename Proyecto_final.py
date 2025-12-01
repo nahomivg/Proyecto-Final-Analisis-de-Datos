@@ -50,7 +50,16 @@ print("\n=== ESTADÍSTICAS DESCRIPTIVAS ===")
 print(df.describe(), "\n")
 
 
-# INTERPRETACIÓN:   ------- ¡PENDIENTE!
+# INTERPRETACIÓN: 
+# El dataset contiene 200 películas con información general, financiera y calificaciones. 
+# Algunas columnas tienen valores faltantes (presupuesto_millones y votos).
+# Se presentan valores faltantes y valores negativos.
+# Es necesaria una limpieza antes del análisis. 
+# Las películas presentan una duración, presupuestos y recaudaciones muy variables.
+# Se presentan calificaciones de crítica y audiencia relativamente consistentes. 
+# En general, los datos son adecuados para analizar tendencias por retorno de inversión (ROI)
+# Es conveniente considerar outliers y sesgo de filas eliminadas al interpretar resultados
+
 
 # -----------------------------------------------------------------------------
 # 4. LIMPIEZA DE DATOS
@@ -179,7 +188,7 @@ print()
 # -----------------------------------------------------------------------------
 # 5. ANÁLISIS DESCRIPTIVO
 # -----------------------------------------------------------------------------
-print("\n========= ANÁLISIS DESCRIPTIVO =========")
+print("\n========== ANÁLISIS DESCRIPTIVO ==========")
 print("\n--- ANALISIS DE PELÍCULAS DEL AÑO 2024 --- ")
 
 # ----- Conteo de películas por género -----
@@ -221,9 +230,45 @@ for genero, cantidad in ganancia_por_genero.items():
 correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr().round(2)
 print("\nCorrelación:")
 print(correlacion)
+("\n")
 
 
-# INTERPRETACIÓN: [Escribe aquí qué significan tus estadísticas]
+# INTERPRETACIÓN:
+# De acuerdo al análisis de datos, en el año 2024 se hallaron los siguientes resultados:
+
+# --- Número de películas por género ---
+# Los géneros más producidos fueron Animación y Ciencia Ficción (6 cintas en cada categoría)
+# El género menos producido fue Acción (1 cinta)
+# Esto indica que en 2024 hubo una tendencia hacia géneros con un tono más familiar/científico
+
+# --- Media de calificación de crítica ---
+# Acción y Drama tienen las mejores críticas (7.5 y 7.1)
+# Terror y Animación tienen las criticas más bajas (4.65 y 6.43)
+# Se sugiere que los críticos valoran más géneros de narrativa seria o más estructurada, 
+# teniendo menos preferencia con géneros relacionados únicamente al entretenimiento
+
+# --- Media de calificación de audiencia ---
+# Acción y Comedia destacan con las calificaciones más altas (9.2 y 9.1)
+# Drama y Terror se valoran por debajo (5.95 y 6.9)
+# La audiencia valora más el entretenimiento ligero y emocionante
+
+# --- ROI promedio por género ---
+# Ciencia Ficción, Drama y Animación lideran el ROI
+# Terror y Comedia tienen los valores más bajos
+# Esto indica que ciertos géneros generan mayor retorno económico relativo a su presupuesto
+
+# --- Ganancia promedio por género ---
+# Acción y Ciencia Ficción tienen las mayores ganancias totales (623.3 y 492.48 millones)
+# Romance y Comedia tienen las ganancias más bajas
+# Los géneros más populares o con mayor producción tienden a generar mayores ingresos absolutos
+
+# --- Correlación --- 
+# Hay una correlación negativa fuerte entre presupuesto y ROI (-0.77),
+# por lo que películas con presupuestos más altos no necesariamente tienen mejor retorno porcentual.
+# La correlación entre recaudación y ROI es positiva pero débil (0.22),
+# por lo que más ingresos no garantizan un ROI alto.
+# Presupuesto y recaudación no se correlacionan (0.04),
+# por lo que gastar más no asegura más ganancias.
 
 
 # -----------------------------------------------------------------------------
@@ -231,103 +276,111 @@ print(correlacion)
 # -----------------------------------------------------------------------------
 print("\n=== CREANDO VISUALIZACIONES ===")
 
-# ----- Histograma: Total de películas por año -----
-print("VISUALIZACIÓN 1: Total de películas por año")
-plt.figure(figsize=(8, 5))
-sns.histplot(data=df, x="año", bins=20, kde=True)
-plt.title("Número de películas por año")
-plt.xlabel("Año")
-plt.ylabel("Cantidad de películas")
-plt.tight_layout() 
-plt.savefig("grafico1_peliculas_año.png")
-plt.close()
-print("Grafico guardado\n")
-
-
 # ----- Gráfico de barras: Películas por género -----
-print("VISUALIZACIÓN 2: Total de películas por año")
-sns.barplot(x=conteos_genero.index, y=conteos_genero.values)
-plt.title("Cantidad de películas por género en 2024")
-plt.xlabel("Género")
-plt.ylabel("Cantidad de películas")
-plt.tight_layout() 
-plt.savefig("grafico2_peliculas_genero.png")
-plt.close()
+print("VISUALIZACIÓN 1: Total de películas por año")
+sns.barplot(x=conteos_genero.index, y=conteos_genero.values)   # Gráfico con Seaborn
+plt.title("Cantidad de películas por género en 2024")          # Titulo
+plt.xlabel("Género")                                           # Eje X
+plt.ylabel("Cantidad de películas")                            # Eje Y
+plt.xticks(rotation=45)                                        # Rotar etiquetas
+plt.tight_layout()                                             # Ajustar automáticamente elementos del gráfico
+plt.savefig("grafico1_peliculas_genero.png")                   # Guardar imagen
+plt.close()                                                    # Cerrar figura actual
 print("Grafico guardado\n")
 
 
 # ----- Gráfico de barras: ROI promedio por género -----
-print("VISUALIZACIÓN 3: ROI promedio por género")
+print("VISUALIZACIÓN 2: ROI promedio por género")
 plt.figure(figsize=(8,5))
 sns.barplot(x=roi_por_genero.index, y=roi_por_genero.values)
 plt.title("ROI promedio por género (2024)")
 plt.xlabel("Género")
 plt.ylabel("ROI(%)")
+plt.xticks(rotation=45) 
 plt.tight_layout() 
-plt.savefig("grafico3_roi_genero.png")
+plt.savefig("grafico2_roi_genero.png")
 plt.close()
 print("Grafico guardado\n")
 
 
 # ----- Heatmap de correlación: Correlación entre presupuesto, recaudación y ROI -----
-print("VISUALIZACIÓN 4: Correlación entre presupuesto, recaudación y ROI")
+print("VISUALIZACIÓN 3: Correlación entre presupuesto, recaudación y ROI")
 plt.figure(figsize=(8, 5))
 correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr()
 sns.heatmap(correlacion, annot=True, cmap="coolwarm", center=0)
 plt.title("Correlación entre presupuesto, recaudación y ROI (2024)")
+plt.xticks(rotation=45) 
 plt.tight_layout() 
-plt.savefig("grafico4_correlacion.png")
+plt.savefig("grafico3_correlacion.png")
 plt.close()
 print("Grafico guardado\n")
 
 
 # ----- Boxplot: ROI -----
-print("VISUALIZACIÓN 5: Botplot de ROI")
+print("VISUALIZACIÓN 4: Botplot de ROI")
 plt.figure(figsize=(8, 5))
 sns.boxplot(data=df, x="genero", y="roi_porcentaje")
 plt.title("Distribución de ROI por género (2024)")
 plt.xlabel("Género")
 plt.ylabel("ROI(%)")
+plt.xticks(rotation=45) 
 plt.tight_layout() 
-plt.savefig("grafico5_boxplot_roi.png")
+plt.savefig("grafico4_boxplot_roi.png")
 plt.close()
 print("Grafico guardado\n")
+
 
 # -----------------------------------------------------------------------------
 # 7. INTERPRETACIÓN Y CONCLUSIONES
 # -----------------------------------------------------------------------------
-"""
-HALLAZGOS PRINCIPALES:
+print("\n========= HALLAZGOS PRINCIPALES =========")
+
+# Uso de comillas triple ("""") para imprimir en pantalla.
+print("""                            
 ----------------------
-1. [Primer hallazgo basado en tu análisis]
-   Evidencia: [Qué estadística o gráfico lo respalda]
+1. Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación.
+   Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2)
+              y boxplot de ROI (VISUALIZACIÓN 4).
 
-2. [Segundo hallazgo]
-   Evidencia: [Qué estadística o gráfico lo respalda]
+2. La audiencia valora más Acción y Comedia, mientras que los críticos prefieren Acción y Drama.
+   Evidencia: Media de calificación de audiencia y crítica por género (impresiones en consola).
 
-3. [Tercer hallazgo]
-   Evidencia: [Qué estadística o gráfico lo respalda]
+3. Existe una correlación negativa fuerte entre presupuesto y ROI, indicando que películas 
+   con presupuestos altos no siempre generan un alto retorno monetario.
+   Evidencia: Heatmap de correlación entre presupuesto, recaudación y ROI (VISUALIZACIÓN 3).
 
+       
 RESPUESTA A LA PREGUNTA DE INVESTIGACIÓN:
-------------------------------------------
-[Responde claramente a tu pregunta inicial basándote en tu análisis]
+--------------------------------------------
+Según los datos de 2024, el género de Ciencia Ficción ofreció el mayor retorno de inversión promedio,
+seguido por Drama y Animación. Esto indica que, en promedio, estas películas generan más ROI por
+cada unidad invertida.
+
 
 LIMITACIONES:
 -------------
-- [Limitación 1: ej. tamaño de muestra pequeño]
-- [Limitación 2: ej. falta de datos de cierto periodo]
-- [Limitación 3: ej. posible sesgo en la recolección]
+- Sesgo debido a la limpieza de datos (Eliminación de filas).
+- Tamaño de muestra reducido (21 películas en 2024), lo que puede afectar la representatividad.
+- Datos concentrados únicamente en un año; no se incluyen tendencias históricas.
+
 
 PRÓXIMOS PASOS:
 ---------------
-- [Qué análisis adicionales podrías hacer]
-- [Qué datos adicionales serían útiles]
-- [Qué preguntas surgen de este análisis]
+- Analizar datos de varios años para ver tendencias en ROI por género.
+- Incluir métricas adicionales como presencia en streaming (plataformas digitales).
+- Explorar relación entre ROI y otras variables (por ejemplo duración, idioma, país de producción).
+
 
 CONCLUSIÓN GENERAL:
 -------------------
-[Resume en 2-3 oraciones el insight principal de tu proyecto]
-"""
+El género de Ciencia Ficción se destaca como el más rentable en términos de ROI en 2024.
+Aunque los ingresos absolutos son mayores en Acción, el retorno relativo es menor. 
+Esto sugiere que películas con menor presupuesto pero buena aceptación pueden ser más eficientes financieramente.
+""")
+
+# ------------------------------------------------------------------------
+
+print("\nANÁLISIS COMPLETADO CORRECTAMENTE\n")
 
 # =============================================================================
 # FIN DEL PROYECTO
