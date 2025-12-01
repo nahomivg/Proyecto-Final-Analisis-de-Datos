@@ -193,15 +193,9 @@ print()
 # -----------------------------------------------------------------------------
 print("\n========== ANÁLISIS DESCRIPTIVO ==========")
 print("\n--- ANALISIS DE PELÍCULAS DEL AÑO 2024 --- ")
-# Datos correspondientes al año 2024, 21 películas
-
-# ------------------------------------------------------------------------
-# RESUMEN DE ANÁLISIS DESCRIPTIVO
-
-# ------------------------------------------------------------------------
-
 
 # ----- Conteo de películas por género -----
+# Con el objetivo de conocer la representatividad del número de películas por género
 conteos_genero = df["genero"].value_counts()
 print("\nNúmero de películas por género:")
 for genero, cantidad in conteos_genero.items():
@@ -209,6 +203,7 @@ for genero, cantidad in conteos_genero.items():
 
 
 # ----- Media de calificación de critica -----
+# Con el objetivo de comparar la percepción de críticos y espectadores
 media_calif_critica = df.groupby("genero")["calificacion_critica"].mean().sort_values(ascending=False)
 print("\nMedia de calificación de critica por género:")        # Ordenados de mayor a menor
 for genero, cantidad in media_calif_critica.items():
@@ -216,6 +211,7 @@ for genero, cantidad in media_calif_critica.items():
 
 
 # ----- Media de calificación de audiencia -----
+# Con el objetivo de comparar la percepción de críticos y espectadores
 media_calif_audiencia = df.groupby("genero")["calificacion_audiencia"].mean().sort_values(ascending=False)
 print("\nMedia de calificación de audiencia por género:")      # Ordenados de mayor a menor
 for genero, cantidad in media_calif_audiencia.items():
@@ -223,6 +219,7 @@ for genero, cantidad in media_calif_audiencia.items():
 
 
 # ----- Promedio de ROI por género -----
+# Con el objetivo de identificar los géneros más rentables basados en el ROI(%)
 roi_por_genero = df.groupby("genero")["roi_porcentaje"].mean().sort_values(ascending=False)
 print("\nROI promedio por género:")                            # Ordenados de mayor a menor
 for genero, cantidad in roi_por_genero.items():
@@ -230,6 +227,7 @@ for genero, cantidad in roi_por_genero.items():
 
 
 # ----- Ganancia promedio por género -----
+# Con el objetivo de identificar los géneros más rentables en valores netos
 ganancia_por_genero = df.groupby("genero")["ganancia_millones"].mean().sort_values(ascending=False)
 print("\nGanancia promedio por género:")                       # Ordenados de mayor a menor
 for genero, cantidad in ganancia_por_genero.items():
@@ -237,6 +235,7 @@ for genero, cantidad in ganancia_por_genero.items():
 
 
 # ----- Correlación -----
+# Para descubrir relaciones clave entre las variables de interés
 correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr().round(2)
 print("\nCorrelación:")
 print(correlacion)
@@ -330,8 +329,8 @@ print("Grafico guardado\n")
 
 
 # ----- Boxplot: ROI -----
-# Para observar la variabilidad del ROI dentro de cada género, 
-# mostrando medianas, cuartiles y posibles valores atípicos
+# Para observar la variabilidad del ROI dentro de cada género, mostrando medianas, cuartiles y 
+# posibles valores atípicos
 print("VISUALIZACIÓN 4: Botplot de ROI")
 plt.figure(figsize=(8, 5))
 sns.boxplot(data=df, x="genero", y="roi_porcentaje")
