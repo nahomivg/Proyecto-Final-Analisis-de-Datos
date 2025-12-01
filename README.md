@@ -44,8 +44,7 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 
 ---
 
-**4. Análisis descriptivo**
-
+**4. Análisis descriptivo** <br>
 *Número de películas por género:*
   - Los géneros más producidos fueron Animación y Ciencia Ficción 
   - El menos producido fue Acción 
@@ -69,8 +68,7 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 
 ---
 
-**5. Visualizaciones**
-
+**5. Visualizaciones** <br>
 *Cantidad de películas por género (2024)*
 `grafico1_peliculas_genero.png`
 
@@ -85,25 +83,21 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 
 ---
 
-**6. Interpretación y conclusiones**
-
+**6. Interpretación y conclusiones** <br>
 a. Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación.
-
-   Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2)
+   - Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2)
               y boxplot de ROI (VISUALIZACIÓN 4).
 
 
 b. La audiencia valora más Acción y Comedia, mientras que los críticos prefieren Acción y Drama.  
-
-   Evidencia: Media de calificación de audiencia y crítica por género (impresiones en consola).
+   - Evidencia: Media de calificación de audiencia y crítica por género (impresiones en consola).
 
 c. Existe una correlación negativa fuerte entre presupuesto y ROI, indicando que películas 
    con presupuestos altos no siempre generan un alto retorno monetario.
-
-   Evidencia: Heatmap de correlación entre presupuesto, recaudación y ROI (VISUALIZACIÓN 3).
+   - Evidencia: Heatmap de correlación entre presupuesto, recaudación y ROI (VISUALIZACIÓN 3).
 
        
-*Respuesta a la pregunta de investigación:* <br>
+*Respuesta a la pregunta de investigación:*
 Según los datos de 2024, el género de Ciencia Ficción ofreció el mayor retorno de inversión promedio,
 seguido por Drama y Animación. Esto indica que, en promedio, estas películas generan más ROI por
 cada unidad invertida.
@@ -121,7 +115,7 @@ cada unidad invertida.
 - Explorar relación entre ROI y otras variables (por ejemplo duración, idioma, país de producción).
 
 
-*Conclusión general:* <br>
+*Conclusión general:* 
 El género de Ciencia Ficción se destaca como el más rentable en términos de ROI en 2024.
 Aunque los ingresos absolutos son mayores en Acción, el retorno relativo es menor. 
 Esto sugiere que películas con menor presupuesto pero buena aceptación pueden ser más eficientes financieramente.
