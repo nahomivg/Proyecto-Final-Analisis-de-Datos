@@ -85,13 +85,13 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 
 **6. Interpretación y conclusiones** <br>
 a. Los géneros con mayor ROI promedio fueron Ciencia Ficción, seguido por Drama y Animación.
-    Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2) y boxplot de ROI (VISUALIZACIÓN 4).
+       Evidencia: Gráfico de barras de ROI promedio por género (VISUALIZACIÓN 2) y boxplot de ROI (VISUALIZACIÓN 4).
 
 b. La audiencia valora más Acción y Comedia, mientras que los críticos prefieren Acción y Drama.  
-   Evidencia: Media de calificación de audiencia y crítica por género (impresiones en consola).
+       Evidencia: Media de calificación de audiencia y crítica por género (impresiones en consola).
 
 c. Existe una correlación negativa fuerte entre presupuesto y ROI, indicando que películas con presupuestos altos no siempre generan un alto retorno monetario.
-   Evidencia: Heatmap de correlación entre presupuesto, recaudación y ROI (VISUALIZACIÓN 3).
+       Evidencia: Heatmap de correlación entre presupuesto, recaudación y ROI (VISUALIZACIÓN 3).
 
 
 *Respuesta a la pregunta de investigación:*
