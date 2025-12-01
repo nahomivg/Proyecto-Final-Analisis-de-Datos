@@ -70,16 +70,16 @@ El dataset contiene información de 200 películas de los últimos años (2018-2
 
 **5. Visualizaciones**
 *Cantidad de películas por género (2024)*
-  grafico1_peliculas_genero.png
+`grafico1_peliculas_genero.png`
 
 *ROI promedio por género (2024)*
-  grafico2_roi_genero.png
+`grafico2_roi_genero.png`
 
 *Correlación entre presupuesto, recaudación y ROI*
-  grafico3_correlacion.png
+`grafico3_correlacion.png`
 
 *Distribución de ROI por género (boxplot)*
-  grafico4_boxplot_roi.png
+`grafico4_boxplot_roi.png`
 
 ---
 
@@ -122,9 +122,9 @@ Esto sugiere que películas con menor presupuesto pero buena aceptación pueden 
 ---
 
 **7. Archivos incluidos**
-- 'Proyecto_final.py' – Código completo  
-- 'peliculas_ratings.csv' – Dataset usado  
-- 'grafico1_peliculas_genero.png' 
-- 'grafico2_roi_genero.png'
-- 'grafico3_correlacion.png'
-- 'grafico4_boxplot_roi.png'
+- `Proyecto_final.py` – Código completo  
+- `peliculas_ratings.csv` – Dataset usado  
+- `grafico1_peliculas_genero.png`
+- `grafico2_roi_genero.png`
+- `grafico3_correlacion.png`
+- `grafico4_boxplot_roi.png`
