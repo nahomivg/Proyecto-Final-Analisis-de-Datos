@@ -172,44 +172,56 @@ print("\nPelículas del año 2024:", len(df))
 print("\n=== DATOS DESPUÉS DE LIMPIEZA ===")
 print(f"Filas: {len(df)}, Columnas: {len(df.columns)}")
 
-print("\n Datos limpios y listos para análisis")
+print("\n¡Datos limpios y listos para análisis!")
 print()
 
 
 # -----------------------------------------------------------------------------
 # 5. ANÁLISIS DESCRIPTIVO
 # -----------------------------------------------------------------------------
-print("\n=== ANÁLISIS DESCRIPTIVO ===")
+print("\n========= ANÁLISIS DESCRIPTIVO =========")
+print("\n--- ANALISIS DE PELÍCULAS DEL AÑO 2024 --- ")
 
 # ----- Conteo de películas por género -----
 conteos_genero = df["genero"].value_counts()
 print("\nNúmero de películas por género:")
-print(conteos_genero)
+for genero, cantidad in conteos_genero.items():
+    print(f"- {genero}: {cantidad}")
+
 
 # ----- Media de calificación de critica -----
 media_calif_critica = df.groupby("genero")["calificacion_critica"].mean().sort_values(ascending=False)
-print("\nMedia de calificación de critica por género:")
-print(media_calif_critica)
+print("\nMedia de calificación de critica por género:")        # Ordenados de mayor a menor
+for genero, cantidad in media_calif_critica.items():
+    print(f"- {genero}: {round(cantidad, 2)}")                   # Uso de round() para redondear
+
 
 # ----- Media de calificación de audiencia -----
 media_calif_audiencia = df.groupby("genero")["calificacion_audiencia"].mean().sort_values(ascending=False)
-print("\nMedia de calificación de audiencia por género:")
-print(media_calif_audiencia)
+print("\nMedia de calificación de audiencia por género:")      # Ordenados de mayor a menor
+for genero, cantidad in media_calif_audiencia.items():
+    print(f"- {genero}: {round(cantidad, 2)}")                   # Uso de round() para redondear
+
 
 # ----- Promedio de ROI por género -----
 roi_por_genero = df.groupby("genero")["roi_porcentaje"].mean().sort_values(ascending=False)
-print("\nROI promedio por género:")
-print(roi_por_genero)
+print("\nROI promedio por género:")                            # Ordenados de mayor a menor
+for genero, cantidad in roi_por_genero.items():
+    print(f"- {genero}: {round(cantidad, 2)}")                   # Uso de round() para redondear
+
 
 # ----- Ganancia promedio por género -----
 ganancia_por_genero = df.groupby("genero")["ganancia_millones"].mean().sort_values(ascending=False)
-print("\nGanancia promedio por género:")
-print(ganancia_por_genero)
+print("\nGanancia promedio por género:")                       # Ordenados de mayor a menor
+for genero, cantidad in ganancia_por_genero.items():
+    print(f"- {genero}: {round(cantidad, 2)}")                   # Uso de round() para redondear
+
 
 # ----- Correlación -----
-correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr()
+correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr().round(2)
 print("\nCorrelación:")
 print(correlacion)
+
 
 # INTERPRETACIÓN: [Escribe aquí qué significan tus estadísticas]
 
