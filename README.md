@@ -2,11 +2,9 @@
 Proyecto final de curso: "Fundamentos de Python para Análisis de Datos".  
 Trabajo de análisis completo y presentación de resultados
 
-#=====================================================================
-#PROYECTO FINAL: Análisis del retorno de inversión (ROI) por género cinematográfico
-#=====================================================================
-#Autor: Nahomi Yamile Velazquez Gasca
-#Fecha: 01/Diciembre/2025
+PROYECTO FINAL: Análisis del retorno de inversión (ROI) por género cinematográfico
+Autor: Nahomi Yamile Velazquez Gasca
+Fecha: 01/Diciembre/2025
 #=====================================================================
 
 **1. Pregunta de investigación**
