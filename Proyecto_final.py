@@ -32,6 +32,8 @@ df = pd.read_csv('peliculas_ratings.csv')
 # -----------------------------------------------------------------------------
 # 3. EXPLORACIÓN INICIAL
 # -----------------------------------------------------------------------------
+# Exploración del dataset para entender la estructura y tipo de datos. 
+# Esto ayuda a planear la limpieza y verificar si hay errores.
 
 print("=" * 70)
 print("EXPLORACIÓN INICIAL DE DATOS")
@@ -70,6 +72,7 @@ print("=" * 70)
 
 # ------------------------------------------------------------------------
 # RESUMEN DE LIMPIEZA
+# Tiene el objetivo de asegurar un análisis confiable de los datos
 # - Corrección de texto (mal codificado)
 # - Eliminación de valores faltantes
 # - Eliminación de valores negativos o inválidos
@@ -190,6 +193,13 @@ print()
 # -----------------------------------------------------------------------------
 print("\n========== ANÁLISIS DESCRIPTIVO ==========")
 print("\n--- ANALISIS DE PELÍCULAS DEL AÑO 2024 --- ")
+# Datos correspondientes al año 2024, 21 películas
+
+# ------------------------------------------------------------------------
+# RESUMEN DE ANÁLISIS DESCRIPTIVO
+
+# ------------------------------------------------------------------------
+
 
 # ----- Conteo de películas por género -----
 conteos_genero = df["genero"].value_counts()
@@ -277,6 +287,7 @@ print(correlacion)
 print("\n=== CREANDO VISUALIZACIONES ===")
 
 # ----- Gráfico de barras: Películas por género -----
+# Para identificar la frecuencia de los géneros en producción
 print("VISUALIZACIÓN 1: Total de películas por año")
 sns.barplot(x=conteos_genero.index, y=conteos_genero.values)   # Gráfico con Seaborn
 plt.title("Cantidad de películas por género en 2024")          # Titulo
@@ -290,6 +301,7 @@ print("Grafico guardado\n")
 
 
 # ----- Gráfico de barras: ROI promedio por género -----
+# Para identificar qué géneros generan mayor ROI relativo a su presupuesto
 print("VISUALIZACIÓN 2: ROI promedio por género")
 plt.figure(figsize=(8,5))
 sns.barplot(x=roi_por_genero.index, y=roi_por_genero.values)
@@ -304,6 +316,7 @@ print("Grafico guardado\n")
 
 
 # ----- Heatmap de correlación: Correlación entre presupuesto, recaudación y ROI -----
+# Para identificar patrones de correlación, como la relación negativa entre presupuesto y ROI
 print("VISUALIZACIÓN 3: Correlación entre presupuesto, recaudación y ROI")
 plt.figure(figsize=(8, 5))
 correlacion = df[["presupuesto_millones", "recaudacion_millones", "roi_porcentaje"]].corr()
@@ -317,6 +330,8 @@ print("Grafico guardado\n")
 
 
 # ----- Boxplot: ROI -----
+# Para observar la variabilidad del ROI dentro de cada género, 
+# mostrando medianas, cuartiles y posibles valores atípicos
 print("VISUALIZACIÓN 4: Botplot de ROI")
 plt.figure(figsize=(8, 5))
 sns.boxplot(data=df, x="genero", y="roi_porcentaje")
